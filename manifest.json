@@ -23,5 +23,7 @@
   "content_scripts": [ {
     "js": [ "jquery-1.10.2.js"],
     "matches": [ "http://*/*", "https://*/*"]
-  }]
+  }],
+    "web_accessible_resources": [ "css/font-awesome.min.css" ]
+
 }

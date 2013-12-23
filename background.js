@@ -39,7 +39,7 @@ chrome.omnibox.onInputEntered.addListener(function(text) {
 		    currentUrl = tab.url;
 		  	console.log(currentUrl, message);
 		  	if(message.search('@') > -1 || message.search('&') > -1) {
-		  	    var temp = message.replace(/r/g, '');
+		  	    var temp = message.replace('@', '');
 		  	    message = temp;
 		  	    console.log(message);
 		    	send(currentUrl, message);
@@ -139,20 +139,6 @@ function save(url) {
 	$.ajax ({
 		type: "POST",
 		url: "localhost:3000/reciever/save",
-		data: {url: url},
-		success: function(data){
-		    console.log(data);
-		}
-	});
-}
-
-/**
-	Suggest the link openly
-*/
-function suggest(url) {
-	$.ajax ({
-		type: "POST",
-		url: "localhost:3000/reciever/suggest",
 		data: {url: url},
 		success: function(data){
 		    console.log(data);
