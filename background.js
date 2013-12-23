@@ -39,8 +39,8 @@ chrome.omnibox.onInputEntered.addListener(function(text) {
 		    currentUrl = tab.url;
 		  	console.log(currentUrl, message);
 		  	if(message.search('@') > -1 || message.search('&') > -1) {
-		  	    var temp = message.split(" ", 2);
-		  	    message = temp[1];
+		  	    var temp = message.replace(/r/g, '');
+		  	    message = temp;
 		  	    console.log(message);
 		    	send(currentUrl, message);
 		    }

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<style>
+	#container {
+		width: 350px;
+		height: 100px;
+	}
+
+	.form-container {
+		text-align: right;
+		margin-bottom: 7px;
+	}
+
+	#thank, #tag, #forward {
+		width: 60%;
+	}
+
+	#thx_btn{
+		text-align: right;
+	}
+
+	label , input{
+		display: inline-block;
+	}
+
+</style>
+<body>
+	<div id="container">
+		<form class="form-container">
+			  <label for="tag">Tag</label>
+			  <input type="text" name="tags" id="tag" placeholder="#">
+			  <input type="submit" value="Tag">
+		</form>
+		<form class="form-container">
+			  <label for="forward">Forward</label>
+			  <select name="forward" id="forward">
+			  	<option value="startup_frnds">Startup friends</option>
+			  	<option value="music_cricle">Music cirlce</option>
+			  </select>
+			  <input type="submit" value="Send">
+		</form>
+		<br>
+		<form class="form-container"> 
+			<input type="submit" value="Thank">
+		<form>
+	</div>
+</body>
+</html>

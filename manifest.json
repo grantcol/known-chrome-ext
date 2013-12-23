@@ -5,7 +5,7 @@
 
   "description": "Wire",
   "icons": {
-    "16": "wireicon.png"
+    "16": "img/wireicon.png"
   },
   "omnibox": { "keyword" : "q" },
   "permissions": [ "tabs",  "http://mighty-anchorage-6957.herokuapp.com/**"],
@@ -15,8 +15,10 @@
   },
     "page_action": {
     "default_icon": {                    
-      "19": "check.png"                     
-    }
+      "19": "img/check.png"                     
+    },
+    "default_title": "Wire",      // optional; shown in tooltip
+    "default_popup": "popup.html"        // optional
   },
   "content_scripts": [ {
     "js": [ "jquery-1.10.2.js"],
