@@ -1,0 +1,25 @@
+{
+  "name": "Wire",
+  "version": "1.0",
+  "manifest_version": 2,
+
+  "description": "Wire",
+  "icons": {
+    "16": "wireicon.png"
+  },
+  "omnibox": { "keyword" : "q" },
+  "permissions": [ "tabs",  "http://mighty-anchorage-6957.herokuapp.com/**"],
+  "background": {
+    "persistent": false,
+    "scripts": ["jquery-1.10.2.js","background.js"]
+  },
+    "page_action": {
+    "default_icon": {                    
+      "19": "check.png"                     
+    }
+  },
+  "content_scripts": [ {
+    "js": [ "jquery-1.10.2.js"],
+    "matches": [ "http://*/*", "https://*/*"]
+  }]
+}
