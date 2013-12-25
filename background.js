@@ -44,7 +44,7 @@ chrome.omnibox.onInputEntered.addListener(function(text) {
 		  	    /*var temp = message.replace('@', '');
 		  	    message = temp;*/
 		  	    console.log(message);
-		    	//send(currentUrl, message, recipList, tagList);
+		    	send(currentUrl, message, recipList, tagList);
 		    }
 		    else
 		    	navigate(message);
@@ -109,11 +109,9 @@ function getPerifs(string, identifier) {
 		}
 		if(inString){
 			counter++;
-			console.log("Char: "+string[i]+" counter: "+counter);
 		}
 		if(inString && (string[i] == " " || i+1 == string.length)){
 			var sub = string.substr(start, counter - 1);
-			console.log("Sub string "+sub);
 			temp.push(sub);
 			inString = false;
 			counter = 0;
@@ -121,6 +119,16 @@ function getPerifs(string, identifier) {
 		}
 	}
 	return temp;
+}
+
+/**
+	Scrubs some string for extraneous characters
+*/
+function scrubber(dirt, toBeCleaned) {
+	for(var i = 0; i < toBeCleaned.length; i++){
+		toBeCleaned[i] = toBeCleaned.replace('dirt', " ");
+	}
+	return toBeCleaned;
 }
 
 /**
@@ -154,12 +162,12 @@ function addToSuggestions(newSuggestions) {
 */
 function send(url, text, recipList, tagList) {
 	var recips = recipList.join();
-	var tags = tagList.join();
-	console.log("Recipients "+recips + " Tags "+tags);
+	var tag_list = tagList.join();
+	console.log(tag_list);
 	$.ajax ({
 		type: "POST",
 		url: "http://mighty-anchorage-6957.herokuapp.com/links/recieve",
-		data: {title: text, url: url},// recip_id : recips, user_id : user_id, tags : tags},
+		data: {title: text, url: url, tag_list : tag_list},// recip_id : recips, user_id : user_id, tag_list : tag_list},
 		success: function(data){
 		    console.log("Wire sent!");
 		}
