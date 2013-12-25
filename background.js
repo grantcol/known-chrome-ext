@@ -39,10 +39,11 @@ chrome.omnibox.onInputEntered.addListener(function(text) {
 		    currentUrl = tab.url;
 		  	console.log(currentUrl, message);
 		  	if(message.search('@') > -1 || message.search('&') > -1) {
-		  	    var temp = message.replace('@', '');
-		  	    message = temp;
+		  		var recipList = charCounter(message);
+		  	    /*var temp = message.replace('@', '');
+		  	    message = temp;*/
 		  	    console.log(message);
-		    	send(currentUrl, message);
+		    	send(currentUrl, message, recipList);
 		    }
 		    else
 		    	navigate(message);
@@ -94,6 +95,27 @@ function navigate(url) {
   });
 }
 
+function charCounter(string) {
+	var temp = [];
+	var counter = 0;
+	var inString = false;
+	for(var i = 0; i < string.length; i++){
+		if(string[i] == "@"){
+			counter++;
+			inString = true;
+		}
+		if(inString){
+			counter++;
+		}
+		if(inString && string[i] == " "){
+			var sub = string.substr('@', counter - 1);
+			temp.push(sub);
+			inString = false;
+		}
+	}
+	return temp;
+}
+
 function getSuggestions() {
 	$.ajax({
 		type: "POST", 
@@ -120,12 +142,13 @@ function addToSuggestions(newSuggestions) {
 /**
 	Send the link and message to the person's linkbox or email. 
 */
-function send(url, text) {
-	console.log(text);
+function send(url, text, recipList) {
+	var recips = recipList.join();
+	console.log(recips);
 	$.ajax ({
 		type: "POST",
 		url: "http://mighty-anchorage-6957.herokuapp.com/links/recieve",
-		data: {title: text, url: url},
+		data: {title: text, url: url},// recip_id : recips, user_id : user_id},
 		success: function(data){
 		    console.log("Wire sent!");
 		}
