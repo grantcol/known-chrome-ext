@@ -116,6 +116,8 @@ function getPerifs(string, identifier) {
 			console.log("Sub string "+sub);
 			temp.push(sub);
 			inString = false;
+			counter = 0;
+			continue;
 		}
 	}
 	return temp;
