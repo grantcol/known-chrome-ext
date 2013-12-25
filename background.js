@@ -39,11 +39,12 @@ chrome.omnibox.onInputEntered.addListener(function(text) {
 		    currentUrl = tab.url;
 		  	console.log(currentUrl, message);
 		  	if(message.search('@') > -1 || message.search('&') > -1) {
-		  		var recipList = charCounter(message);
+		  		var recipList = getPerifs(message, '@');
+		  		var tagList = getPerifs(message, '#');
 		  	    /*var temp = message.replace('@', '');
 		  	    message = temp;*/
 		  	    console.log(message);
-		    	send(currentUrl, message, recipList);
+		    	send(currentUrl, message, recipList, tagList);
 		    }
 		    else
 		    	navigate(message);
@@ -95,12 +96,15 @@ function navigate(url) {
   });
 }
 
-function charCounter(string) {
+/**
+	Parse the message string and return a list of either @ mentions of # tags
+*/
+function getPerifs(string, identifier) {
 	var temp = [];
 	var counter = 0;
 	var inString = false;
 	for(var i = 0; i < string.length; i++){
-		if(string[i] == "@"){
+		if(string[i] == identifier){
 			counter++;
 			inString = true;
 		}
@@ -108,7 +112,7 @@ function charCounter(string) {
 			counter++;
 		}
 		if(inString && string[i] == " "){
-			var sub = string.substr('@', counter - 1);
+			var sub = string.substr(identifier, counter - 1);
 			temp.push(sub);
 			inString = false;
 		}
@@ -142,29 +146,16 @@ function addToSuggestions(newSuggestions) {
 /**
 	Send the link and message to the person's linkbox or email. 
 */
-function send(url, text, recipList) {
+function send(url, text, recipList, tagList) {
 	var recips = recipList.join();
-	console.log(recips);
+	var tags = tagList.join();
+	console.log("Recipients "+recips + " Tags "+tags);
 	$.ajax ({
 		type: "POST",
 		url: "http://mighty-anchorage-6957.herokuapp.com/links/recieve",
-		data: {title: text, url: url},// recip_id : recips, user_id : user_id},
+		data: {title: text, url: url},// recip_id : recips, user_id : user_id, tags : tags},
 		success: function(data){
 		    console.log("Wire sent!");
-		}
-	});
-}
-
-/**
-	Add the link to my linkbox
-*/
-function save(url) {
-	$.ajax ({
-		type: "POST",
-		url: "localhost:3000/reciever/save",
-		data: {url: url},
-		success: function(data){
-		    console.log(data);
 		}
 	});
 }
@@ -182,9 +173,3 @@ function giveThanks(sender) {
 		}
 	});
 }
-
-/**
-	Recieve thanks for a link
-*/
-function recieveThanks() {}
-
