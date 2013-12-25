@@ -44,7 +44,7 @@ chrome.omnibox.onInputEntered.addListener(function(text) {
 		  	    /*var temp = message.replace('@', '');
 		  	    message = temp;*/
 		  	    console.log(message);
-		    	send(currentUrl, message, recipList, tagList);
+		    	//send(currentUrl, message, recipList, tagList);
 		    }
 		    else
 		    	navigate(message);
@@ -64,9 +64,6 @@ chrome.omnibox.onInputChanged.addListener(function(text, suggest) {
     	}
 	}
 });
-
-
-// Utilities
 
 /**
 	Stores the tags and links associated for easy retrieval 
@@ -102,17 +99,21 @@ function navigate(url) {
 function getPerifs(string, identifier) {
 	var temp = [];
 	var counter = 0;
+	var start;
 	var inString = false;
 	for(var i = 0; i < string.length; i++){
 		if(string[i] == identifier){
+			start = i;
 			counter++;
 			inString = true;
 		}
 		if(inString){
 			counter++;
+			console.log("Char: "+string[i]+" counter: "+counter);
 		}
-		if(inString && string[i] == " "){
-			var sub = string.substr(identifier, counter - 1);
+		if(inString && (string[i] == " " || i+1 == string.length)){
+			var sub = string.substr(start, counter - 1);
+			console.log("Sub string "+sub);
 			temp.push(sub);
 			inString = false;
 		}
@@ -120,6 +121,9 @@ function getPerifs(string, identifier) {
 	return temp;
 }
 
+/**
+	Add suggestions from the server to the omnibox
+*/
 function getSuggestions() {
 	$.ajax({
 		type: "POST", 
