@@ -41,8 +41,9 @@ chrome.omnibox.onInputEntered.addListener(function(text) {
 		  	if(message.search('@') > -1 || message.search('&') > -1) {
 		  		var recipList = getPerifs(message, '@');
 		  		var tagList = getPerifs(message, '#');
-		  	    /*var temp = message.replace('@', '');
-		  	    message = temp;*/
+		  	    console.log(message);
+		  	    message = scrubber(recipList, message);
+		  	    message = scrubber(tagList, message);
 		  	    console.log(message);
 		    	send(currentUrl, message, recipList, tagList);
 		    }
@@ -125,8 +126,8 @@ function getPerifs(string, identifier) {
 	Scrubs some string for extraneous characters
 */
 function scrubber(dirt, toBeCleaned) {
-	for(var i = 0; i < toBeCleaned.length; i++){
-		toBeCleaned[i] = toBeCleaned.replace('dirt', " ");
+	for(var i = 0; i < dirt.length; i++){
+		toBeCleaned = toBeCleaned.replace(dirt[i], "");
 	}
 	return toBeCleaned;
 }
