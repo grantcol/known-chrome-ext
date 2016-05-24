@@ -1,29 +1,27 @@
 {
-  "name": "Wire",
+  "name": "Trakfire",
   "version": "1.0",
   "manifest_version": 2,
 
-  "description": "Wire",
+  "description": "Link sharing shortcut",
   "icons": {
     "16": "img/wireicon.png"
   },
-  "omnibox": { "keyword" : "q" },
-  "permissions": [ "tabs",  "http://mighty-anchorage-6957.herokuapp.com/**"],
+  "permissions":  ["activeTab"],
   "background": {
     "persistent": false,
-    "scripts": ["jquery-1.10.2.js","background.js"]
+    "scripts": ["js/jquery-1.10.2.js","js/tf-background.js"]
   },
-    "page_action": {
+  "page_action": {
     "default_icon": {                    
       "19": "img/check.png"                     
     },
-    "default_title": "Wire",      // optional; shown in tooltip
+    "default_title": "Trakfire",      // optional; shown in tooltip
     "default_popup": "popup.html"        // optional
   },
   "content_scripts": [ {
-    "js": [ "jquery-1.10.2.js"],
+    "js": [ "js/jquery-1.10.2.js"],
     "matches": [ "http://*/*", "https://*/*"]
   }],
-    "web_accessible_resources": [ "css/font-awesome.min.css" ]
-
+  "web_accessible_resources": [ "css/font-awesome.min.css" ]
 }
