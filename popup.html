@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/tf-styles.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<script src="js/jquery-1.10.2.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/popup.js"></script>
 </head>
 <style>
 	body {
@@ -9,47 +13,73 @@
 	}
 
 	#container {
-		width: 350px;
+		width: 550px;
 		height: 100px;
 	}
 
-	.form-container {
-		text-align: right;
-		margin-bottom: 7px;
+	.white {
+		color: #fff !important;
 	}
 
-	#thank, #tag, #forward {
-		width: 60%;
+	.hide {
+		display: none;
 	}
 
-	#thx_btn {
-		text-align: right;
+	.alert {
+		margin-bottom: 0px !important;
 	}
 
 	label , input{
 		display: inline-block;
 	}
-
 </style>
 <body>
-	<div id="base-container">
-		<form class="form-container">
-			  <label for="tag"><i class="fa fa-tag"></i></label>
-			  <input type="text" name="tags" id="tag" placeholder="#">
-			  <input type="submit" value="Tag">
-		</form>
-		<form class="form-container">
-			  <label for="forward"><i class="fa fa-forward"></i></label>
-			  <select name="forward" id="forward">
-			  	<option value="startup_frnds">Startup friends</option>
-			  	<option value="music_cricle">Music cirlce</option>
-			  </select>
-			  <input type="submit" value="Send">
-		</form>
-		<br>
-		<form class="form-container"> 
-			<input type="submit" value="Thank">
-		<form>
-	</div>
+	<div class="base-container" id="container">
+	  <!-- POST VIEW -->
+	   <div id="post-view" class="hide">
+		<div class="alert alert-dismissible hide" role="alert" id="alert">
+		  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		  <span id="alert_msg"></span>
+		</div>
+	       <div class="tf-newtrack-wrapper"> 
+	          <div class="align-left"> 
+	            <div class="tf-newtrack-img"> 
+	              <img id="track_img" src="img/tf_placeholder.png"></img>
+	            </div>
+	            <div class="tf-newtrack-form"> 
+	              <label> ARTIST </label> 
+	              <input type="text" id="artist_field"></input>  
+	              <label> TITLE </label> 
+	              <input type="text" id="title_field"></input>  
+	            </div>
+	            </div>
+	            <!--<div class="align-left"> 
+		            <input type="checkbox" class="tf-checkbox" name="hiphop" id="hiphop" value="HIPHOP"></input>
+		            <label class="tf-checkbox-label white" htmlFor="hiphop" > Rhymes </label>
+		            <input type="checkbox"  class="tf-checkbox" id="vocals" name="vocals" value="VOCALS"></input>
+		            <label class="tf-checkbox-label white" htmlFor="vocals" >Vocals</label>
+		            <input type="checkbox" class="tf-checkbox" id="edm" name="edm" value="ELECTRONIC"></input>
+		            <label class="tf-checkbox-label white" htmlFor="edm" >Electronic</label>
+	            <br>
+	            </div>-->
+	            <div class="button button--big" id="continue-btn"> CONTINUE </div>
+	        </div>
+	    </div>
+	   	<!-- AUTH VIEW -->
+     	<div id="auth-view">
+	       <div class="tf-newtrack-wrapper"> 
+	          <div class="align-left"> 
+	            <div class="tf-newtrack-form"> 
+	              <label> HANDLE </label> 
+	              <input type="text" id="handle_field"></input>  
+	              <label> PASSWORD </label> 
+	              <input type="text" id="password_field"></input>  
+	            </div>
+	            </div>
+	            <div class="button button--big" id="signin-btn"> SIGN IN </div>
+	          </div>
+	     	</div>     		
+     	</div>
+ 	</div>
 </body>
 </html>

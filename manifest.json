@@ -3,25 +3,25 @@
   "version": "1.0",
   "manifest_version": 2,
 
-  "description": "Link sharing shortcut",
+  "description": "Post to trakfire like a wavy god",
   "icons": {
-    "16": "img/wireicon.png"
+    "16": "img/votes-arrow.png"
   },
-  "permissions":  ["activeTab"],
+  "permissions":  ["activeTab", "tabs"],
   "background": {
     "persistent": false,
-    "scripts": ["js/jquery-1.10.2.js","js/tf-background.js"]
+    "scripts": ["js/jquery-1.10.2.js"]
   },
-  "page_action": {
+  "browser_action": {
     "default_icon": {                    
-      "19": "img/check.png"                     
+      "19": "img/votes-arrow.svg"                     
     },
-    "default_title": "Trakfire",      // optional; shown in tooltip
-    "default_popup": "popup.html"        // optional
+    "default_title": "Trakfire",   
+    "default_popup": "popup.html"        
   },
   "content_scripts": [ {
     "js": [ "js/jquery-1.10.2.js"],
     "matches": [ "http://*/*", "https://*/*"]
   }],
-  "web_accessible_resources": [ "css/font-awesome.min.css" ]
+  "web_accessible_resources": [ "css/font-awesome.min.css", "css/tf-styles.css", "js/bootstrap.min.js", "css/bootstrap.min.css"]
 }
