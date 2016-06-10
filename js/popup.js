@@ -11,16 +11,17 @@ $(function() {
   if(!!isLoggedIn) {
   	  //show the post page (hide auth view)
   	  $("#auth-view").addClass("hide");
-  	  //make sure the post page is visible
-  	  $("#post-view").removeClass("hide");
   	  //if so, grab the track info and display it
 	  chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
 	    console.log(tabs[0].url);
 	    var url = tabs[0].url;
 	    if (validateUrl(url)){
+	    	//make sure the post page is visible
+	    	$("#post-view").removeClass("hide");
 	    	fetch(url);
 	    } else {
 	    	console.log("bad url");
+	    	loadView("static-view");
 	    }
 	  });
   }
@@ -102,17 +103,21 @@ function resetView(view) {
 
 function invert(view) {
 	if(view == "auth-view") {
-		return "post-view";
+		return ["post-view", "static-view"];
+	} else if (view == "post-view") {
+		return ["auth-view", "static-view"];
 	} else {
-		return "auth-view";
+		return ["auth-view", "post-view"];
 	}
 }
 
 /* Load a view into the main container of the popup */
 
 function loadView(view) {
-	var other = invert(view);
-	$("#"+other).addClass("hide");
+	var others = invert(view);
+	others.forEach(function(v) {
+		$("#"+v).addClass("hide");
+	});
 	$("#"+view).removeClass("hide");
 	if(view == "post-view") {
 	  	chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
@@ -122,6 +127,7 @@ function loadView(view) {
 		    	fetch(url);
 		    } else {
 		    	console.log("bad url");
+		    	loadView("static-view");
 		    }
 	  	});
   	}
@@ -229,6 +235,10 @@ function resolve(url) {
 			if(track) {
 				showTrackData(track);
 			}
+		}, 
+		error: function() {
+			console.log("an error occurred");
+			showAlert("error", "Soundcloud has restricted this song");
 		}
 	});	
 }
