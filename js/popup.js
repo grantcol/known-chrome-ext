@@ -33,6 +33,10 @@ $(function() {
   	login();
   });
 
+  $('#signout-btn').click(function() {
+  	logout();
+  });
+
 });
 
 function validateUrl(url) {
@@ -50,6 +54,11 @@ function login() {
 	if(!!handle && !!password){ authenticate(handle, password, handleAuthResponse); }
 	else { resetView("auth-view"); }
 }	
+
+function logout() {
+	localStorage.setItem("jwt", "");
+	loadView('auth-view');
+}
 
 /* Resolve a sc url to the track object */
 
@@ -140,7 +149,8 @@ function parse(data) {
 		stream_url: obj.stream_url,
 		duration: obj.duration, 
 		img_url: obj.artwork_url,
-		genre: "HIPHOP ELECTRONIC VOCALS"
+		genre: "HIPHOP ELECTRONIC VOCALS", 
+		img_url_lg: obj.artwork_url.replace("large", "crop")
 	};
 }
 
@@ -174,11 +184,9 @@ function post(data) {
 		data: { post: data },
 	 	headers: {'Authorization': localStorage.getItem('jwt')},
 		success: function(data){
-		    console.log(data);
-		    if(data.status == 201) {
-		    	console.log(data.status, 'Thanks for the new heat fam');
-		    	showAlert("success", 'Thanks for the new heat fam');
-		    }
+		    console.log("RESP", data);
+		    console.log('Thanks for the new heat fam');
+		    showAlert("success", 'Thanks for the new heat fam');
 		}, 
 		error: function(xhr, status, err) {
     		if(err == "Unprocessable Entity") {

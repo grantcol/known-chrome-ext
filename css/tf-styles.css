@@ -12690,3 +12690,9 @@ img.zoom-img {
 .tf-top-margin {
 	margin-top: 10px;
 }
+
+.upper-right {
+	position: absolute;
+	top: 5px;
+	right: 10px;
+}
