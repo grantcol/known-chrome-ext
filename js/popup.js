@@ -90,14 +90,14 @@ function handleAuthResponse(response) {
 function resetView(view) {
 	if(view == "auth-view") {
 
-		$("handle_field").val("");
-		$("password_field").val("");
+		$("#handle_field").val("");
+		$("#password_field").val("");
 
 	} else if(view == "post-view"){
-
-		$("artist_field").val("");
-		$("title_field").val("");
-		$("track_img").attr("src", "img/tf_placeholder.png");
+		console.log("clearing");
+		$("#artist_field").val('');
+		$("#title_field").val('');
+		$("#track_img").attr("src", "img/tf_placeholder.png");
 
 	}
 }
@@ -191,15 +191,18 @@ function post(data) {
 		data: { post: data },
 	 	headers: {'Authorization': localStorage.getItem('jwt')},
 		success: function(data){
-		    console.log("RESP", data);
-		    console.log('Thanks for the new heat fam');
+		    //console.log("RESP", data);
+		    //console.log('Thanks for the new heat fam');
 		    showAlert("success", 'Thanks for the new heat fam');
 		    resetView("post-view");
 		}, 
 		error: function(xhr, status, err) {
     		if(err == "Unprocessable Entity") {
-    			console.log("You're late, we already have that track.");
+    			//console.log("You're late, we already have that track.");
     			showAlert("error", "You're late, we already have that track.");
+    			resetView("post-view");
+    		} else if(err == "Internal Server Error") {
+    			showAlert("error", "Something went wrong on our server try again in a sec.");
     			resetView("post-view");
     		}
 		}
