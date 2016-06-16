@@ -12693,6 +12693,8 @@ img.zoom-img {
 
 .upper-right {
 	position: absolute;
-	top: 5px;
-	right: 10px;
+	bottom: 10px;
+	margin-left: 10px;
+	z-index: 1000000;
+	font-size:10px;
 }

@@ -194,11 +194,13 @@ function post(data) {
 		    console.log("RESP", data);
 		    console.log('Thanks for the new heat fam');
 		    showAlert("success", 'Thanks for the new heat fam');
+		    resetView("post-view");
 		}, 
 		error: function(xhr, status, err) {
     		if(err == "Unprocessable Entity") {
-    			console.log("You're late brother we already have that track.");
-    			showAlert("error", "You're late brother we already have that track.");
+    			console.log("You're late, we already have that track.");
+    			showAlert("error", "You're late, we already have that track.");
+    			resetView("post-view");
     		}
 		}
 	});
