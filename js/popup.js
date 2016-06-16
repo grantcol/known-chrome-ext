@@ -18,6 +18,7 @@ $(function() {
 	    if (validateUrl(url)){
 	    	//make sure the post page is visible
 	    	$("#post-view").removeClass("hide");
+	    	$("#static-view").addClass("hide");
 	    	fetch(url);
 	    } else {
 	    	console.log("bad url");
