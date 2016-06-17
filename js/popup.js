@@ -171,10 +171,16 @@ function showTrackData(track) {
 
 function submit(track) {
 	if(track) {
-		post(track);
+		post(updateMetadata(track));
 	} else {
 		console.log("No track to post");
 	}
+}
+
+function updateMetadata(track) {
+	track.title = $("#title_field").val();
+	track.artist = $("#artist_field").val();
+	return track;
 }
 
 function buildUrl(endpoint, url) {
