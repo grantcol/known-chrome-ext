@@ -1607,7 +1607,7 @@ ul.tf-filter-bar-ul {
 	margin-bottom: 31px;
 }
 
-input[type=text], textarea{
+input[type=text], input[type=password], textarea{
 	/* Rectangle 367 Copy: */
 	background: #161616;
 	border: 1px solid #545454;
@@ -1622,8 +1622,6 @@ input[type=text], textarea{
 	padding-bottom: 6px;
 	width: 100%;
 }
-
-
 
 .tf-soundcloud-link {
 	width: 100%;

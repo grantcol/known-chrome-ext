@@ -25,6 +25,8 @@ $(function() {
 	    	loadView("static-view");
 	    }
 	  });
+  } else {
+  	$("#static-view").addClass("hide");
   }
 
   $('#continue-btn').click(function() {
