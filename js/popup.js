@@ -1,9 +1,12 @@
 var track = null;
+var dev = false;
 var base_url = "https://api.soundcloud.com";
 var endpoints = {tracks: "/tracks", resolve: "/resolve"};
 var client_id = '9999309763ba9d5f60b28660a5813440';
-var auth_endpoint = "http://localhost:3000/logins/auth";
-var post_endpoint = "http://localhost:3000/posts";
+var origin = dev ? "http://localhost:3000" : "https://trakfire-stage.herokuapp.com";
+var auth_endpoint = origin+"/logins/auth";
+var post_endpoint = origin+"/posts";
+
 
 $(function() {
   // check localStorage to see if the user has logged in or not
