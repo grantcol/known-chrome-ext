@@ -4,9 +4,6 @@
   "manifest_version": 2,
 
   "description": "Post to trakfire like a wavy god",
-  "icons": {
-    "16": "img/votes-arrow.png"
-  },
   "permissions":  ["activeTab", "tabs"],
   "background": {
     "persistent": false,
@@ -14,7 +11,7 @@
   },
   "browser_action": {
     "default_icon": {                    
-      "19": "img/votes-arrow.svg"                     
+      "19": "img/logo.png"                     
     },
     "default_title": "Trakfire",   
     "default_popup": "popup.html"        
@@ -23,5 +20,5 @@
     "js": [ "js/jquery-1.10.2.js"],
     "matches": [ "http://*/*", "https://*/*"]
   }],
-  "web_accessible_resources": [ "css/font-awesome.min.css", "css/tf-styles.css", "js/bootstrap.min.js", "css/bootstrap.min.css"]
+  "web_accessible_resources": [ "css/font-awesome.min.css", "css/tf-styles.css", "js/bootstrap.min.js", "css/bootstrap.min.css", "img/logo.png"]
 }
