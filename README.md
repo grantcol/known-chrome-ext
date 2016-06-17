@@ -14,4 +14,4 @@ Sign into your trakfire account with your **twitter** handle and **trakfire** pa
 ## Dev Mode
 line 2 of popup.js will show whether the app is built for dev or stage/prod
 `var dev = true;`
-change this to `false` when you are ready to post to ** the staging server **. 
+change this to `false` when you are ready to post to **the staging server**. 
